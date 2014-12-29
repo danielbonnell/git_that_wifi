@@ -5,37 +5,27 @@ feature "sees the details of a site", %q{
   I can decide if it meets my criteria for a work site
 
   Acceptance Criteria:
-  [ ] - Must see the name of the site
-  [ ] - Must see the location of the site
-  [ ] - Must see user generated reviews (if any) (optional)
-  [ ] - Must see photos (if any)(optional)
-  [ ] - Must have at least one category
-  [ ] - Must see description
-  [ ] - Must see phone number (if any)
-  [ ] - Must see website url (if any)(optional)
-  [ ] - Must see days open (optional)
-  [ ] - Must see open time (optional)
-  [ ] - Must see close time (optional)
-  [ ] - Must see cost rating (optional)
-  [ ] - Must see username that created site
+  - [ ] Must see the name of the site
+  - [ ] Must see the location of the site
+  - [ ] Must see user generated reviews (if any) (optional)
+  - [ ] Must see photos (if any)(optional)
+  - [ ] Must have at least one category
+  - [ ] Must see description
+  - [ ] Must see phone number (if any)
+  - [ ] Must see website url (if any)(optional)
+  - [ ] Must see days open (optional)
+  - [ ] Must see open time (optional)
+  - [ ] Must see close time (optional)
+  - [ ] Must see cost rating (optional)
+  - [ ] Must see username that created site
   } do
 
+  let (:user) do
+    FactoryGirl.create(:user)
+  end
+
   let (:test_site) do
-    Site.create!(
-      name: "Caffé Nero",
-      address: "50 Tremont St.",
-      city: "Boston",
-      zip: "02111",
-      state: "MA",
-      description: "Authentic Italian espresso",
-      phone: "(123) 456-7890",
-      url: "http://www.caffenero.com/",
-      days_open: "M-F",
-      open_time: "8am",
-      close_time: "8pm",
-      cost_rating: 2,
-      user_id: 1,
-    )
+    FactoryGirl.create(:site, user_id: user.id)
   end
 
   scenario "sees the name of the site" do

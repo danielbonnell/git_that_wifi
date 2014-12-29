@@ -7,8 +7,20 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
-  # factory :site do
-  #
-  # end
-
+  factory :site do
+    name 'Caffé Nero'
+    address '50 Tremont St.'
+    city 'Boston'
+    state 'MA'
+    zip '02111'
+    description 'Authentic Italian espresso'
+    phone '(123) 456-7890'
+    url 'http://www.caffenero.com/'
+    days_open 'M-F'
+    open_time '8am'
+    close_time '8pm'
+    cost_rating 2
+    
+    # association :user_id, factory: :user
+  end
 end
