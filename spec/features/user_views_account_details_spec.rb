@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'user sees account details', %Q{
+feature "user sees account details", %Q{
   As a user, I want to view my account page,
   So I can see my account & make any changes
 
@@ -12,8 +12,8 @@ feature 'user sees account details', %Q{
   scenario "visit your account detail and edit" do
     user = FactoryGirl.create(:user)
     visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
 
     visit user_path(user)
 
@@ -26,5 +26,5 @@ feature 'user sees account details', %Q{
     expect(page).to have_content "Avatar"
     expect(page).to have_content "Edit"
   end
-  
+
 end
