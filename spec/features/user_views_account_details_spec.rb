@@ -26,4 +26,5 @@ feature 'user sees account details', %Q{
     expect(page).to have_content "Avatar"
     expect(page).to have_content "Edit"
   end
+  
 end
