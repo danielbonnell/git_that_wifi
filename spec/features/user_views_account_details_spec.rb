@@ -9,14 +9,21 @@ feature 'user sees account details', %Q{
   -[ ] i see a link to edit my information
   } do
 
-    scenario "visit your account detail and edit" do
+  scenario "visit your account detail and edit" do
+    user = FactoryGirl.create(:user)
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
 
-    visit show_user_path
+    visit user_path(user)
 
     expect(page).to have_content "First name"
+    expect(page).to have_content user.first_name
     expect(page).to have_content "Last name"
+    expect(page).to have_content user.last_name
     expect(page).to have_content "Email"
+    expect(page).to have_content user.email
     expect(page).to have_content "Avatar"
     expect(page).to have_content "Edit"
-    end
+  end
 end
