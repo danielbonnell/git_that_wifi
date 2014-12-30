@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   def index
-    @sites = Site.order('cost_rating DESC')
+    @sites = Site.order("cost_rating DESC")
   end
 
   def show
@@ -17,7 +17,7 @@ class SitesController < ApplicationController
     if @site.save
       redirect_to @site
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -29,7 +29,19 @@ class SitesController < ApplicationController
   end
 
   private
-    def site_params
-      params.require(:site).permit(:name, :address, :city, :state, :zip, :description, :days_open, :open_time, :close_time, :cost_rating)
-    end
+
+  def site_params
+    params.require(:site).permit(
+      :name,
+      :address,
+      :city,
+      :state,
+      :zip,
+      :description,
+      :days_open,
+      :open_time,
+      :close_time,
+      :cost_rating
+    )
+  end
 end

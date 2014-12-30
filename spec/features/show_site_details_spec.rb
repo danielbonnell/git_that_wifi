@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "sees the details of a site", %q{
   As a guest, I want to view the details of a site, so that

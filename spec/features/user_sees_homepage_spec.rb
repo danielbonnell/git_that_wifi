@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'visits homepage', %q{
-  As a guest, I want to visit the homepage and see a list of top rated places to work.
-  So that I can decide where to work today.
+feature "visits homepage", %q{
+  As a guest, I want to visit the homepage and see a list of top rated places
+  to work, so that I can decide where to work today.
 
   Acceptance Criteria:
   - [ ] I see the title of the website
@@ -14,12 +14,8 @@ feature 'visits homepage', %q{
   end
 
   let!(:sites) do
-    # [].tap do |list|
-    #   10.times { list << FactoryGirl.create(:site, user: user)}
-    # end
-
     list = []
-    10.times { list << FactoryGirl.create(:site, user: user)}
+    10.times { list << FactoryGirl.create(:site, user: user) }
     list
   end
 
@@ -27,11 +23,11 @@ feature 'visits homepage', %q{
     sites.last
   end
 
-    scenario "visits homepage" do
-      visit root_path
-      within "table.sites tbody tr:nth-child(1)" do
-        expect(page).to have_content(site.cost_rating)
-      end
+  scenario "visits homepage" do
+    visit root_path
 
+    within "table.sites tbody tr:nth-child(1)" do
+      expect(page).to have_content(site.cost_rating)
     end
   end
+end
