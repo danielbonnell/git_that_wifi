@@ -19,8 +19,8 @@ FactoryGirl.define do
     days_open 'M-F'
     open_time '8am'
     close_time '8pm'
-    cost_rating 2
-    
-    # association :user_id, factory: :user
+    sequence(:cost_rating) { |n| n }
+
+    user
   end
 end

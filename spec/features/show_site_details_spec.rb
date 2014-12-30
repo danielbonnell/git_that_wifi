@@ -20,12 +20,8 @@ feature "sees the details of a site", %q{
   - [ ] Must see username that created site
   } do
 
-  let (:user) do
-    FactoryGirl.create(:user)
-  end
-
   let (:test_site) do
-    FactoryGirl.create(:site, user_id: user.id)
+    FactoryGirl.create(:site)
   end
 
   scenario "sees the name of the site" do
@@ -37,10 +33,10 @@ feature "sees the details of a site", %q{
   scenario "sees the location of the site" do
     visit site_path(test_site)
 
-    expect(page).to have_content %q{
-      #{test_site.address}
-      #{test_site.city}, #{test_site.state} #{test_site.zip}
-    }
+    expect(page).to have_content test_site.address
+    expect(page).to have_content test_site.city
+    expect(page).to have_content test_site.state
+    expect(page).to have_content test_site.zip
   end
 
   # scenario "has a rating" do
