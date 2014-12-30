@@ -6,7 +6,7 @@
         <li class="price"><%= @user.first_name %> <%= @user.last_name %></li>
         <li class="bullet-item"><%= @user.email %></li>
         <li class="bullet-item"><%= image_tag @user.gravatar_url(:size => 300) %></li>
-        <li class="cta-button"><a class="button round" href="<%= edit_user_registration_path %>">Edit My Account</a></li>
+        <li class="cta-button">link_to 'Edit My Account', edit_user_registration_path, class: 'button round'</li>
       </ul>
     </div>
   </div>
