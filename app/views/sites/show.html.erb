@@ -1,39 +1,43 @@
 <h1>Site Details</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th width="100">Name</th>
-      <th width="100">Address</th>
-      <th width="100">City</th>
-      <th width="100">State</th>
-      <th width="100">Zip</th>
-      <th width="100">Phone</th>
-      <th width="100">Days Open</th>
-      <th width="100">Open Time</th>
-      <th width="100">Close Time</th>
-      <th width="100">Cost Rating</th>
-      <th width="100">Url</th>
-      <th width="100">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @site.name %></td>
-      <td>
-        <p>
-          <%= @site.address %>
-          <br>
-          <%= @site.city %>, <%= @site.state %> <%= @site.zip %>
-        </p>
-      </td>
-      <td><%= @site.phone %></td>
-      <td><%= @site.days_open %></td>
-      <td><%= @site.open_time %></td>
-      <td><%= @site.close_time %></td>
-      <td><%= @site.cost_rating %></td>
-      <td><%= @site.url %></td>
-      <td><%= @site.description %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="large-10 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+          <th>Phone</th>
+          <th>Days Open</th>
+          <th>Open Time</th>
+          <th>Close Time</th>
+          <th>Cost Rating</th>
+          <th>Url</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @site.name %></td>
+          <td>
+            <p>
+              <%= @site.address %>
+              <br>
+              <%= @site.city %>, <%= @site.state %> <%= @site.zip %>
+            </p>
+          </td>
+          <td><%= @site.phone %></td>
+          <td><%= @site.days_open %></td>
+          <td><%= @site.open_time %></td>
+          <td><%= @site.close_time %></td>
+          <td><%= @site.cost_rating %></td>
+          <td><%= @site.url %></td>
+          <td><%= @site.description %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

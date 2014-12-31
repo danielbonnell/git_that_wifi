@@ -39,30 +39,6 @@ feature "sees the details of a site", %q{
     expect(page).to have_content test_site.zip
   end
 
-  # scenario "has a rating" do
-  #   visit site_path(test_site)
-  #
-  #   expect(page).to have_content test_site.rating
-  # end
-
-  # scenario "sees user generated reviews (if any)" do
-  #   visit site_path(test_site)
-  #
-  #   expect(page).to have_content ""
-  # end
-
-  # scenario "sees photos (if any)" do
-  #   visit site_path(test_site)
-  #
-  #   expect(page).to have_content ""
-  # end
-
-  # scenario "has at least one category" do
-  #   visit site_path(test_site)
-  #
-  #   expect(page).to have_content ""
-  # end
-
   scenario "sees description" do
     visit site_path(test_site)
 
@@ -81,34 +57,9 @@ feature "sees the details of a site", %q{
     expect(page).to have_content test_site.url
   end
 
-  scenario "sees days open" do
-    visit site_path(test_site)
-
-    expect(page).to have_content test_site.days_open
-  end
-
-  scenario "sees open time" do
-    visit site_path(test_site)
-
-    expect(page).to have_content test_site.open_time
-  end
-
-  scenario "sees close time" do
-    visit site_path(test_site)
-
-    expect(page).to have_content test_site.close_time
-  end
-
   scenario "sees cost rating" do
     visit site_path(test_site)
 
     expect(page).to have_content test_site.cost_rating
   end
-
-  # scenario "sees username that created site" do
-  #   visit site_path(test_site)
-  #
-  #   expect(page).to have_content ""
-  # end
-
 end
