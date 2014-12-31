@@ -41,6 +41,9 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'coveralls', require: false
+end
 
 # gem 'better_errors', group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]

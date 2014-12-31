@@ -1,16 +1,27 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'visits homepage', %Q{
-  As a guest, I want to visit the homepage and see a list of top rated places to work.
-  So that I can decide where to work today.
+feature "visits homepage", %q{
+  As a guest, I want to visit the homepage and see a list of top rated places
+  to work, so that I can decide where to work today.
 
   Acceptance Criteria:
-  -[ ]- I see the title of the website
-  -[ ]- I see a list of the top ten sites in descending order
+  - [ ] I see the title of the website
+  - [ ] I see a list of the top ten sites in descending order
   } do
-    scenario "visits homepage" do
 
-      visit root_path
-      expect(page).to have_content "Sites"
-    end
+  let(:user) do
+    FactoryGirl.create(:user)
   end
+
+  site1 = FactoryGirl.create(:site)
+  site2 = FactoryGirl.create(:site)
+
+  scenario "visits homepage" do
+    visit root_path
+
+    site1_index = page.body.index(site1.name)
+    site2_index = page.body.index(site2.name)
+
+    expect(site2_index).to be < site1_index
+  end
+end
