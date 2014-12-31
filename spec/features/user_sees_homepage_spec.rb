@@ -21,7 +21,7 @@ feature "visits homepage", %q{
 
     site1_index = page.body.index(site1.name)
     site2_index = page.body.index(site2.name)
-    
+
     expect(site2_index).to be < site1_index
   end
 end
