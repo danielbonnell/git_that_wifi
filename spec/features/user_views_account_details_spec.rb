@@ -26,7 +26,7 @@ feature "user sees account details", %Q{
   scenario "user tries to edit account user is signed out" do
     visit edit_user_registration_path
     expect(page).to have_content
-    "You need to sign in or sign up before continuing."
+      "You need to sign in or sign up before continuing."
   end
 
 end
