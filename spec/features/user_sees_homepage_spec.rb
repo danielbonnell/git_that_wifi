@@ -13,21 +13,15 @@ feature "visits homepage", %q{
     FactoryGirl.create(:user)
   end
 
-  let!(:sites) do
-    list = []
-    10.times { list << FactoryGirl.create(:site, user: user) }
-    list
-  end
-
-  let(:site) do
-    sites.last
-  end
+  site1 = FactoryGirl.create(:site)
+  site2 = FactoryGirl.create(:site)
 
   scenario "visits homepage" do
     visit root_path
 
-    within "table.sites tbody tr:nth-child(1)" do
-      expect(page).to have_content(site.cost_rating)
-    end
+    site1_index = page.body.index(site1.name)
+    site2_index = page.body.index(site2.name)
+    
+    expect(site2_index).to be < site1_index
   end
 end

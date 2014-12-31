@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   def index
-    @sites = Site.limit(10).order("cost_rating DESC")
+    @sites = Site.limit(10).order("name DESC")
   end
 
   def show

@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :site do
-    name "Caffé Nero"
+    sequence(:name) { |n| "Caffé Nero ##{n}"}
     address "50 Tremont St."
     city "Boston"
     state "MA"
@@ -16,9 +16,6 @@ FactoryGirl.define do
     description "Authentic Italian espresso"
     phone "(123) 456-7890"
     url "http://www.caffenero.com/"
-    days_open "M-F"
-    open_time "8am"
-    close_time "8pm"
     sequence(:cost_rating) { |n| n }
 
     user
