@@ -1,15 +1,15 @@
 <%= form_for(@site) do |f| %>
-<% if @site.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
+  <% if @site.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
 
-  <ul>
-    <% @site.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+    <ul>
+      <% @site.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
   <div class="field">
     <%= f.label :name %><br/>
     <%= f.text_field :name %>
@@ -48,8 +48,8 @@
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="form-group">
-    <%= f.submit "Create Site", class: "button round" %>
+    <%= f.submit class: "button round" %>
   </div>
 
 
-<% end %>
+  <% end %>

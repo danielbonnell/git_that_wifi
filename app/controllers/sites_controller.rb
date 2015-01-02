@@ -13,6 +13,19 @@ class SitesController < ApplicationController
   end
 
   def edit
+    @site = Site.find(params[:id])
+  end
+
+  def update
+    @site = Site.find(params[:id])
+
+    if @site.update_attributes(site_params)
+
+      flash[:notice] = "Site updated successfully"
+      redirect_to site_path(@site)
+    else
+      render "edit"
+    end
   end
 
   def create
