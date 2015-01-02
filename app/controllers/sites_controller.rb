@@ -33,10 +33,9 @@ class SitesController < ApplicationController
     if @site.update(site_params)
       redirect_to site_path(@site)
     else
-      render 'edit'
+      render "edit"
     end
   end
-
 
   def destroy
     @site = Site.find(params[:id])
