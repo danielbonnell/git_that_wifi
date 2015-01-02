@@ -35,3 +35,9 @@
     </table>
   </div>
 </div>
+
+
+<% if current_user != nil && current_user.id == @site.user_id %>
+
+<%= link_to "Edit", edit_site_path(@site) %>
+<% end %>

@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @sites = Site.limit(10).order("name DESC")
   end
@@ -11,11 +12,16 @@ class SitesController < ApplicationController
     @site = Site.new
   end
 
+  def edit
+  end
+
   def create
     @site = Site.new(site_params)
 
     if @site.save
-      redirect_to @site
+
+      flash[:notice] = "Site created successfully"
+      redirect_to site_path(@site)
     else
       render "new"
     end
@@ -37,11 +43,11 @@ class SitesController < ApplicationController
       :city,
       :state,
       :zip,
+      :url,
       :description,
-      :days_open,
-      :open_time,
-      :close_time,
-      :cost_rating
+      :phone,
+      :cost_rating,
+      :user_id
     )
   end
 end
