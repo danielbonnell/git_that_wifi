@@ -16,6 +16,18 @@ class SitesController < ApplicationController
     @site = Site.find(params[:id])
   end
 
+  def update
+    @site = Site.find(params[:id])
+
+    if @site.update_attributes(site_params)
+
+      flash[:notice] = "Site updated successfully"
+      redirect_to site_path(@site)
+    else
+      render "edit"
+    end
+  end
+
   def create
     @site = Site.new(site_params)
 
@@ -25,15 +37,6 @@ class SitesController < ApplicationController
       redirect_to site_path(@site)
     else
       render "new"
-    end
-  end
-
-  def update
-    @site = Site.find(params[:id])
-    if @site.update(site_params)
-      redirect_to site_path(@site)
-    else
-      render "edit"
     end
   end
 

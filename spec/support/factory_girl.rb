@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
 
   factory :site do
-    sequence(:name) { |n| "Caffé Nero ##{n}" }
+    sequence(:name) { |n| "Caffe Nero ##{n}" }
     address "50 Tremont St."
     city "Boston"
     state "MA"

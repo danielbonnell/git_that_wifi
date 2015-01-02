@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user registers", %{
+feature "user creates", %{
   As a user
   I want to be able to create a site to work
   So that I can share it with others
@@ -19,6 +19,7 @@ feature "user registers", %{
       click_button "Sign in"
 
       visit new_site_path
+      expect(page).to have_content "Create a new site"
 
       fill_in "Name", with: site.name
       fill_in "Address", with: site.address
