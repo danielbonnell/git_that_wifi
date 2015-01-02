@@ -10,23 +10,28 @@ feature "User edits site", %{
     # - I can edit each individual detail of the site
     # - I cannot edit a site I did not create
 
-    let(:site) do
-      FactoryGirl.create(:site)
+    let(:user) do
+      FactoryGirl.create(:user)
     end
 
+    let(:new_site) do
+      FactoryGirl.create(:site, name: "Site name", user: user)
+    end
 
-    scenario "user visits their site page" do
-      visit site_path(site)
+    other_user = FactoryGirl.create(:user)
 
+    scenario "user edits their site page" do
+      sign_in_as(user)
+      visit site_path(new_site)
       click_on "Edit"
       fill_in "site[description]", with: "Hey we've changed the site"
       click_on "Submit"
-      expect(page).to have_content site.description
+      expect(page).to have_content "Hey we've changed the site"
     end
 
-    scenario "user visits a site that is not users" do
-      visit site_path(site)
-
-      page.should not_have_selector(:link_or_button, "Edit")
+    scenario "user tries to edit a site that is not theirs" do
+      sign_in_as(other_user)
+      visit site_path(new_site)
+      expect(page).to_not have_selector(:link_or_button, "Edit")
     end
   end

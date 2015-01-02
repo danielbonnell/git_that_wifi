@@ -38,4 +38,5 @@
 
 <% if current_user != nil && current_user.id == @site.user_id %>
     <%= link_to "Edit", edit_site_path(@site) %>
+    <%= link_to 'Delete', site_path(@site), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

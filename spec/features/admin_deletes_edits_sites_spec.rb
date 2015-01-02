@@ -1,5 +1,6 @@
 require "rails_helper"
 
+
 feature "Admin deletes and edits sites", %{
   As admin I want to edit or delete a site
   } do
@@ -9,14 +10,17 @@ feature "Admin deletes and edits sites", %{
     #   an error message
     # - When I edit the site's details, the updated details are shown on the site's page
 
-    let(:new_site) do
-      FactoryGirl.create(:site, name: "Site name")
+   let(:user) do
+      FactoryGirl.create(:user)
     end
 
+    let(:new_site) do
+      FactoryGirl.create(:site, name: "Site name", user: user)
+    end
 
     scenario "admin visits site's details" do
-      visit new_site_path(new_site)
-
+      sign_in_as(user)
+      visit site_path(new_site)
       click_on "Edit"
       fill_in "site[description]", with: "This is a description"
       click_on "Submit"
@@ -24,9 +28,10 @@ feature "Admin deletes and edits sites", %{
     end
 
     scenario "admin deletes site" do
-      visit new_site_path(new_site)
+      sign_in_as(user)
+      visit site_path(new_site)
 
       click_on "Delete"
-      expect(page).to not_have_content "Site name"
+      expect(page).to_not have_content "Site name"
     end
   end

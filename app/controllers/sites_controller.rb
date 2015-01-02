@@ -13,6 +13,7 @@ class SitesController < ApplicationController
   end
 
   def edit
+    @site = Site.find(params[:id])
   end
 
   def create
@@ -26,6 +27,16 @@ class SitesController < ApplicationController
       render "new"
     end
   end
+
+  def update
+    @site = Site.find(params[:id])
+    if @site.update(site_params)
+      redirect_to site_path(@site)
+    else
+      render 'edit'
+    end
+  end
+
 
   def destroy
     @site = Site.find(params[:id])
