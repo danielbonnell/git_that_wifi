@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "user updates site", %{
   As an authenticated user
-  I want to update an item's information
+  I want to update a site's information
   So that I can correct errors or provide new information
   } do
 
@@ -20,7 +20,7 @@ feature "user updates site", %{
     expect(page).to have_content "Edit"
 
   end
-  scenario "unauthenticated user sees edit button on show page" do
+  scenario "unauthenticated user does not see edit button on show page" do
     edit_site = FactoryGirl.create(:site)
 
     visit site_path(edit_site)
