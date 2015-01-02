@@ -9,6 +9,7 @@ feature "User Deletes A Site", %{
 
   [ ] If i don't own the site, I should not see a delete button on the site page
   [ ] If I own the site, i should see a delete button on the site page
+  [ ] I should not see the site's information on the index page anymore
 } do
 
   let(:site) do
@@ -24,6 +25,7 @@ feature "User Deletes A Site", %{
 
     expect(current_path) == sites_path
 
+    expect(page).to_not have_content site.name
   end
 
   scenario "non logged in user should not see delete button" do
