@@ -16,18 +16,19 @@ feature "user updates site", %{
     click_button "Sign in"
 
     visit site_path(edit_site)
-
-    expect(page).to have_content "Edit"
+    expect(page).to have_content(:link_or_button, "Edit")
 
   end
+
   scenario "unauthenticated user does not see edit button on show page" do
     edit_site = FactoryGirl.create(:site)
 
     visit site_path(edit_site)
 
-    expect(page).to have_no_content "Edit"
+    expect(page).to_not have_content(:link_or_button, "Edit")
 
   end
+
   scenario "authenticated user edits site" do
     edit_site = FactoryGirl.create(:site)
     visit new_user_session_path
