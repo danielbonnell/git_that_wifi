@@ -38,7 +38,7 @@ feature "user adds review", %{
       visit site_path(test_site)
 
       click_on "Add a Review"
-      save_and_open_page
+
       select "5", from: "Rating"
 
       click_on "Submit"

@@ -36,8 +36,15 @@
   </div>
   <div class="reviews">
     <% @reviews.each do |review|  %>
-    Rating: <%= review.rating %>
-    Comment: <%= review.comment %>
+      Rating: <%= review.rating %>
+      Comment: <%= review.comment %>
+      <% unless current_user == nil %>
+        <% if review.user_id == current_user.id %>
+          <%= link_to "Edit Review", edit_site_review_path(@site, review) %>
+          <%= link_to "Delete", site_review_path(@site, review), method: :delete, data: { confirm: "Are you sure?" } %>
+
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <div class="#review">
