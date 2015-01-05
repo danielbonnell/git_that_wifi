@@ -39,7 +39,7 @@ feature "user adds review", %{
 
       click_on "Add a Review"
       save_and_open_page
-      select "5", from: 'Rating'
+      select "5", from: "Rating"
 
       click_on "Submit"
 
@@ -52,9 +52,7 @@ feature "user adds review", %{
       visit site_path(test_site)
       click_on "Add a Review"
 
-      expect(page).to have_content "You need to sign in or sign up before continuing."
-
+      expect(page).to have_content "You need to sign in
+      or sign up before continuing."
     end
-
-
   end
