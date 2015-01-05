@@ -34,6 +34,15 @@
       </tbody>
     </table>
   </div>
+  <div class="reviews">
+    <% @reviews.each do |review|  %>
+    Rating: <%= review.rating %>
+    Comment: <%= review.comment %>
+    <% end %>
+  </div>
+  <div class="#review">
+    <%= link_to "Add a Review", new_site_review_path(@site) %>
+  </div>
 </div>
 
 <% if current_user != nil && current_user.id == @site.user_id %>
