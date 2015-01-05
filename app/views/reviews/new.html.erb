@@ -1,0 +1,13 @@
+<h1> Add a review </h1>
+
+<%# site_reviews_path(@site) %>
+<%# site_review_path(@site, @review) %>
+<%= simple_form_for ([@site, @review]) do |f| %>
+<br>
+<%= f.input :rating, collection: (1..5).sort.reverse, default: 1  %>
+<br>
+<%= f.input :comment %>
+<br>
+<%= f.submit "Submit" %>
+<br>
+<% end %>
