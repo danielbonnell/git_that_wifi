@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'carrierwave_direct'
   gem 'coveralls', require: false
 end
 
@@ -55,3 +56,6 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'gravtastic'
+gem 'carrierwave'
+gem 'fog'
+gem 'dotenv-rails', :groups => [:development, :test]
