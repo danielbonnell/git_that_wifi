@@ -22,4 +22,12 @@ FactoryGirl.define do
 
     user
   end
+
+  factory :review do
+    rating 5
+    comment "Great!"
+
+    site
+    user
+  end
 end
