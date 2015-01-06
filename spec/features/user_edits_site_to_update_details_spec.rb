@@ -25,7 +25,7 @@ feature "User edits site", %{
       visit site_path(new_site)
       click_on "Edit"
       fill_in "site[description]", with: "Hey we've changed the site"
-      click_on "Submit"
+      click_on "Update Site"
       expect(page).to have_content "Hey we've changed the site"
     end
 
