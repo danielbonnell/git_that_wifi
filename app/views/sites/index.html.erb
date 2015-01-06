@@ -17,7 +17,7 @@
   <tbody>
     <% @sites.each do |site| %>
       <tr>
-        <td><%= site.name %></td>
+        <td><%= link_to site.name, site_path(site) %></td>
         <td>
           <p>
             <%= site.address %>
