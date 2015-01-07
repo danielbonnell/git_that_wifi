@@ -13,10 +13,11 @@ feature "visits homepage", %{
     FactoryGirl.create(:user)
   end
 
-  site1 = FactoryGirl.create(:site)
-  site2 = FactoryGirl.create(:site)
 
   scenario "visits homepage" do
+    site1 = FactoryGirl.create(:site)
+    site2 = FactoryGirl.create(:site)
+    
     visit root_path
 
     site1_index = page.body.index(site1.name)

@@ -18,7 +18,6 @@ feature "User edits site", %{
       FactoryGirl.create(:site, name: "Site name", user: user)
     end
 
-    other_user = FactoryGirl.create(:user)
 
     scenario "user edits their site page" do
       sign_in_as(user)
@@ -30,6 +29,8 @@ feature "User edits site", %{
     end
 
     scenario "user tries to edit a site that is not theirs" do
+      other_user = FactoryGirl.create(:user)
+      
       sign_in_as(other_user)
       visit site_path(new_site)
       expect(page).to_not have_selector(:link_or_button, "Edit")
