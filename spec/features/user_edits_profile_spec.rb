@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user edits profile information", %Q{
+feature "user edits profile information", %{
   As a user, I want to edit my account page
   So I can update my information
 

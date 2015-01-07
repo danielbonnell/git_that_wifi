@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "visits homepage", %q{
+feature "visits homepage", %{
   As a guest, I want to visit the homepage and see a list of top rated places
   to work, so that I can decide where to work today.
 
