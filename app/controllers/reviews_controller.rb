@@ -31,8 +31,11 @@ class ReviewsController < ApplicationController
     @review.site = @site
     @review.user = current_user
     if @review.save
+      @review.site.reviewed
       redirect_to site_path(@review.site_id),
       notice: "Review Saved Successfully"
+      # ReviewAdded.receipt(self).deliver
+      # return true
     else
       render "new"
     end
