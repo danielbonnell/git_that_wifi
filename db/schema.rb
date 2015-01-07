@@ -11,18 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150106183347) do
+ActiveRecord::Schema.define(version: 20150107162625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"
-    t.integer  "rating",     null: false
+    t.integer  "rating",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "site_id",    null: false
-    t.integer  "user_id",    null: false
+    t.integer  "site_id",                null: false
+    t.integer  "user_id",                null: false
+    t.integer  "score",      default: 0, null: false
   end
 
   add_index "reviews", ["site_id"], name: "index_reviews_on_site_id", using: :btree
@@ -64,12 +65,14 @@ ActiveRecord::Schema.define(version: 20150106183347) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
-    t.boolean  "up_vote",    default: false, null: false
-    t.boolean  "down_vote",  default: false, null: false
     t.integer  "review_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "choice",     null: false
   end
+
+  add_index "votes", ["review_id"], name: "index_votes_on_review_id", using: :btree
+  add_index "votes", ["user_id", "review_id"], name: "index_votes_on_user_id_and_review_id", unique: true, using: :btree
 
 end

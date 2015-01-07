@@ -37,11 +37,10 @@ feature "votes on review", %q{
     sign_in_as(test_review.user)
 
     visit site_path(test_review.site)
-    save_and_open_page
-    choose ("Up Vote")
+    click_button "Upvote"
 
 
-    expect(page).to have_content "1 up-vote"
+    expect(page).to have_content test_review.score
   end
 
   # scenario "User can down-vote a review " do
