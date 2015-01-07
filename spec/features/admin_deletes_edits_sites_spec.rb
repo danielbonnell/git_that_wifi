@@ -1,14 +1,14 @@
 require "rails_helper"
 
 feature "Admin deletes and edits sites", %{
-As admin I want to edit or delete a site
-} do
+  As admin I want to edit or delete a site
 
-# Acceptance Criteria:
-# - When I delete the site, it no longer appears in the site's view
-#   an error message
-#- When I edit the site's details, the updated details
-# are shown on the site's page
+  Acceptance Criteria:
+  When I delete the site, it no longer appears in the site's view
+  an error message
+  When I edit the site's details, the updated details
+  are shown on the site's page
+  } do
 
   let(:user) do
     FactoryGirl.create(:user, role: 2)
