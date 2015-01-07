@@ -7,9 +7,9 @@ feature "User Deletes A Site", %{
 
   Acceptance Criteria:
 
-  [ ] If i don't own the site, I should not see a delete button on the site page
+  [ ] If i don"t own the site, I should not see a delete button on the site page
   [ ] If I own the site, i should see a delete button on the site page
-  [ ] I should not see the site's information on the index page anymore
+  [ ] I should not see the site"s information on the index page anymore
 } do
 
   let(:site) do

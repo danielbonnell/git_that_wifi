@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "user updates site", %{
   As an authenticated user
-  I want to update a site's information
+  I want to update a site"s information
   So that I can correct errors or provide new information
   } do
 
