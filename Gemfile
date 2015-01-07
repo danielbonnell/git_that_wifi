@@ -31,5 +31,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'gravtastic'
 gem 'simple_form'
-
 gem 'rails_12factor', group: [:production]
+gem 'carrierwave'
+gem 'fog'
+gem 'dotenv-rails', :groups => [:development, :test]
