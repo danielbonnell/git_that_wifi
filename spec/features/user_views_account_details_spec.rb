@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user sees account details", %Q{
+feature "user sees account details", %{
   As a user, I want to view my account page,
   So I can see my account & make any changes
 

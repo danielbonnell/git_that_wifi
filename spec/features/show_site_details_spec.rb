@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "sees the details of a site", %q{
+feature "sees the details of a site", %{
   As a guest, I want to view the details of a site, so that
   I can decide if it meets my criteria for a work site
 
