@@ -42,22 +42,34 @@ feature "votes on review", %{
     expect(page).to have_content test_review.score
   end
 
-  # scenario "User can down-vote a review " do
-  # end
+  scenario "User can down-vote a review " do
+    sign_in_as(test_review.user)
 
-  # scenario "User can delete vote" do
-  # end
+    visit site_path(test_review.site)
+    click_button "Downvote"
 
-  # scenario "User can change vote" do
-  # end
+    expect(page).to have_content test_review.score
+  end
 
-  # scenario "User can only vote once per review" do
-  # end
+  scenario "User can change vote" do
+    sign_in_as(test_review.user)
 
-  # scenario "Votes on review are totaled" do
-  # end
+    visit site_path(test_review.site)
+    click_button "Downvote"
+    click_button "Upvote"
 
-  # scenario "Votes on review are totaled" do
-  # end
+    expect(page).to have_content test_review.score
+    expect(page).to have_content "Vote Changed"
+  end
 
+  scenario "User can only vote once per review" do
+    sign_in_as(test_review.user)
+
+    visit site_path(test_review.site)
+    click_button "Upvote"
+    click_button "Upvote"
+
+    expect(page).to have_content test_review.score
+    expect(page).to have_content "Vote Already Recorded"
+  end
 end
