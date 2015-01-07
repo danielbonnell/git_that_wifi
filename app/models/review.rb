@@ -8,4 +8,8 @@ class Review < ActiveRecord::Base
   def total_score
     votes.sum(:choice)
   end
+
+  def self.sort_by_total_score
+      Review.all.sort_by(&:total_score).reverse
+  end
 end
