@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "votes on review", %q{
+feature "votes on review", %{
   As an authenticated user I want to vote on a review.
   I can change or delete my vote.
   I can only vote once per review
@@ -21,7 +21,7 @@ feature "votes on review", %q{
 
   } do
 
- let(:user) do
+  let(:user) do
     FactoryGirl.create(:user)
   end
 
@@ -38,7 +38,6 @@ feature "votes on review", %q{
 
     visit site_path(test_review.site)
     click_button "Upvote"
-
 
     expect(page).to have_content test_review.score
   end

@@ -18,12 +18,14 @@ class VotesController < ApplicationController
         flash[:alert] = "Vote Already Recorded"
       end
     rescue
-      @change_vote = Vote.find_by(user_id: current_user.id, review_id: params[:review_id])
+      @change_vote = Vote.find_by(
+        user_id: current_user.id,
+        review_id: params[:review_id]
+        )
       @change_vote.update(vote_params)
       redirect_to site_path(@site)
       flash[:alert] = "Vote Changed"
     end
-
   end
 
   private
@@ -31,5 +33,4 @@ class VotesController < ApplicationController
   def vote_params
     params.require(:vote).permit(:choice, :review_id, :user_id)
   end
-
 end
