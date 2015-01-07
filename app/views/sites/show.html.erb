@@ -34,25 +34,51 @@
       </tbody>
     </table>
   </div>
-  <div class="reviews">
-    <% @reviews.each do |review|  %>
-      Rating: <%= review.rating %>
-      Comment: <%= review.comment %>
-      <% unless current_user == nil %>
-        <% if review.user_id == current_user.id %>
-          <%= link_to "Edit Review", edit_site_review_path(@site, review) %>
-          <%= link_to "Delete", site_review_path(@site, review), method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
+  <br>
 
+<div class ="row">
+  <div class="reviews">
+    <% unless @reviews.empty? %>
+      <ul>
+        <% @reviews.each do |review|  %>
+          <li>
+          Rating: <%= review.rating %><br>
+          Comment: <%= review.comment %>
+            <div class="votes">
+              <%= form_for [review, @vote] do |f| %>
+                <%= f.hidden_field :choice, value: 1 %>
+                <%= f.submit "Upvote" %>
+              <% end %>
+
+              <%= form_for [review, @vote] do |f| %>
+                <%= f.hidden_field :choice, value: -1 %>
+                <%= f.submit "Downvote" %>
+              <% end %>
+            </div>
+            Score: <%= review.total_score %>
+            <div>
+              <% unless current_user == nil %>
+                <% if review.user_id == current_user.id %>
+                  <%= link_to "Edit Review", edit_site_review_path(@site, review) %>
+                  <%= link_to "Delete", site_review_path(@site, review), method: :delete, data: { confirm: "Are you sure?" } %>
+                <% end %>
+              <% end %>
+            </div>
+          </li>
         <% end %>
-      <% end %>
+      </ul>
     <% end %>
   </div>
-  <div class="#review">
+</div>
+  <div class="review">
     <%= link_to "Add a Review", new_site_review_path(@site) %>
   </div>
-</div>
+
+
+
 
 <% if current_user != nil && current_user.id == @site.user_id %>
     <%= link_to "Edit", edit_site_path(@site) %>
-    <%= link_to 'Delete Site', site_path(@site), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to "Delete Site", site_path(@site), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
