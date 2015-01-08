@@ -56,7 +56,7 @@
                 <%= f.submit "Downvote" %>
               <% end %>
             </div>
-            Score: <%= review.total_score %>
+            Score: <%= review.score %>
             <div>
               <% unless current_user == nil %>
                 <% if review.user_id == current_user.id || (!current_user.nil? && current_user.role == 2) %>
@@ -70,11 +70,12 @@
       </ul>
     <% end %>
   </div>
+  <%= paginate @reviews %>
 </div>
+
   <div class="review">
     <%= link_to "Add a Review", new_site_review_path(@site) %>
   </div>
-
 
 
 

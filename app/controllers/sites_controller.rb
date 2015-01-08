@@ -1,12 +1,13 @@
 class SitesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @sites = Site.limit(10).order("name DESC")
+    @sites = Site.order("name DESC").page params[:page]
   end
 
   def show
     @site = Site.find(params[:id])
-    @reviews = Review.sort_by_total_score
+    @reviews = Review.order("score DESC").page params[:page]
+
     @vote = Vote.new
   end
 
@@ -62,7 +63,8 @@ class SitesController < ApplicationController
       :description,
       :phone,
       :cost_rating,
-      :user_id
+      :user_id,
+      :page
     )
   end
 end
