@@ -53,7 +53,7 @@ feature "user adds review", %{
 
       expect(ActionMailer::Base.deliveries.count).to eql(1)
       last_email = ActionMailer::Base.deliveries.last
-      expect(last_email).to have_subject('New Review Posted')
+      expect(last_email).to have_subject("New Review Posted")
       expect(last_email).to deliver_to(test_site.user.email)
     end
 
