@@ -9,6 +9,7 @@ feature "user adds review", %{
   -[ ] I must give a rating and optionally a review comment
   -[ ] I must see those on the site page
   -[ ] I must be signed in to add a review
+  -[ ] The site maker must receive an email saying a new review has been posted
   } do
 
     let (:test_site) do
@@ -23,6 +24,7 @@ feature "user adds review", %{
     end
 
     scenario "Add a review" do
+      ActionMailer::Base.deliveries = []
       user = FactoryGirl.create(:user)
 
       visit new_user_session_path
@@ -39,12 +41,20 @@ feature "user adds review", %{
 
       click_on "Add a Review"
 
+      prev_count = Review.count
+
       select "5", from: "Rating"
 
       click_on "Submit"
 
       expect(page).to have_content "Rating: 5"
       expect(page).to have_content "Review Saved Successfully"
+      expect(Review.count).to eq(prev_count + 1)
+
+      expect(ActionMailer::Base.deliveries.count).to eql(1)
+      last_email = ActionMailer::Base.deliveries.last
+      expect(last_email).to have_subject("New Review Posted")
+      expect(last_email).to deliver_to(test_site.user.email)
     end
 
     scenario "User tries to add comment as a Guest" do

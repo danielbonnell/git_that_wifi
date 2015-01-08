@@ -19,8 +19,10 @@ end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'email_spec'
 end
 
+gem 'mailcatcher', group: [:development]
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]
 gem 'launchy', group: [:development, :test]
