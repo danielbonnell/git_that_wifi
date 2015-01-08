@@ -1,7 +1,13 @@
 class SitesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @sites = Site.order("name DESC").page params[:page]
+    if params[:query]
+      @sites = Site.search(params[:query])
+    else
+      @sites = Site.all
+    end
+    
+    @sites = @sites.order("name DESC").page params[:page]
   end
 
   def show
@@ -63,7 +69,8 @@ class SitesController < ApplicationController
       :phone,
       :cost_rating,
       :user_id,
-      :page
+      :page,
+      :query
     )
   end
 end
