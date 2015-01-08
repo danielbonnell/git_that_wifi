@@ -1,0 +1,34 @@
+<div class ="row">
+  <div class="reviews">
+    <% unless @reviews.empty? %>
+      <ul>
+        <% @reviews.each do |review|  %>
+          <li>
+          Rating: <%= review.rating %><br>
+          Comment: <%= review.comment %>
+            <div class="votes">
+              <%= form_for [review, @vote] do |f| %>
+                <%= f.hidden_field :choice, value: 1 %>
+                <%= f.submit "Upvote" %>
+              <% end %>
+              <%= form_for [review, @vote] do |f| %>
+                <%= f.hidden_field :choice, value: -1 %>
+                <%= f.submit "Downvote" %>
+              <% end %>
+            </div>
+            Score: <%= review.total_score %>
+            <div>
+              <% unless current_user == nil %>
+                <% if review.user_id == current_user.id || (!current_user.nil? && current_user.role == 2) %>
+                  <%= link_to "Edit Review", edit_site_review_path(@site, review) %>
+                  <%= link_to "Delete", site_review_path(@site, review), method: :delete, data: { confirm: "Are you sure?" } %>
+                <% end %>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+
+      </ul>
+    <% end %>
+  </div>
+</div>

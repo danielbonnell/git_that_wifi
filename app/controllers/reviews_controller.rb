@@ -1,6 +1,8 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   def index
+    # @reviews = Review.find_by(params[:site_id]).sort_by_total_score.page params[:page]
+
   end
 
   def new
@@ -52,6 +54,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:comment, :rating, :user_id)
+    params.require(:review).permit(:comment, :rating, :user_id, :page)
   end
 end

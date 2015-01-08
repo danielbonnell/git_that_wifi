@@ -1,4 +1,5 @@
 class Review < ActiveRecord::Base
+  paginates_per 10
   belongs_to :site
   belongs_to :user
 
