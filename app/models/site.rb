@@ -12,7 +12,7 @@ class Site < ActiveRecord::Base
   validates :user_id, presence: true
 
   def review(user)
-    self.review.create!(comment: "Great coffee!", rating: 4, user_id: user.id)
+    review.create!(comment: "Great coffee!", rating: 4, user_id: user.id)
   end
 
   def reviewed
