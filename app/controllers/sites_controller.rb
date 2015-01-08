@@ -6,7 +6,8 @@ class SitesController < ApplicationController
 
   def show
     @site = Site.find(params[:id])
-    @reviews = @site.reviews.order("created_at DESC")
+    @reviews = Review.sort_by_total_score
+    @vote = Vote.new
   end
 
   def new

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :sites do
-    resources :reviews
+    resources :reviews, only: [:index, :new, :create, :edit, :update, :destroy]
+  end
+
+  resources :reviews, only: [:show] do
+    resources :votes, only: [:create, :update, :destroy]
   end
 
   root "sites#index"
