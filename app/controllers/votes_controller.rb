@@ -1,32 +1,16 @@
 class VotesController < ApplicationController
-  # before_action :authenticate_user!, except: [:index]
-  def index
-  end
+  before_action :authenticate_user!
 
-  def create
+  def update
     @review = Review.find(params[:review_id])
     @site = @review.site
-    @vote = Vote.new(vote_params)
-    @vote.review = @review
-    @vote.user = current_user
-    # Instead of update method
-    begin
-      if @vote.save
-        redirect_to site_path(@site)
-        flash[:alert] = "Vote has been recorded"
-      else
-        redirect_to site_path(@site)
-        flash[:alert] = "Vote Already Recorded"
-      end
-    rescue
-      @change_vote = Vote.find_by(
-        user_id: current_user.id,
-        review_id: params[:review_id]
-        )
-      @change_vote.update(vote_params)
-      redirect_to site_path(@site)
-      flash[:alert] = "Vote Changed"
-    end
+    @vote = Vote.find_or_initialize_by(review: @review, user: current_user)
+
+    @vote.attributes = vote_params
+
+    @vote.save!
+    redirect_to site_path(@site)
+    flash[:alert] = "Vote has been recorded"
   end
 
   private

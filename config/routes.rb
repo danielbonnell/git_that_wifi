@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   resources :reviews, only: [:show] do
-    resources :votes, only: [:create, :update, :destroy]
+    resource :votes, only: [:update]
   end
 
   root "sites#index"
