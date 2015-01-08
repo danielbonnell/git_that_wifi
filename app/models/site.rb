@@ -19,4 +19,12 @@ class Site < ActiveRecord::Base
       return true
     end
   end
+
+  def self.search(query)
+    where(
+      "plainto_tsquery(?) @@ " +
+      "to_tsvector('english', name || ' ' || description)",
+      query
+    )
+  end
 end
