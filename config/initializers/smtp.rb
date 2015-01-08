@@ -7,7 +7,8 @@ if Rails.env.development?
 elsif Rails.env.production?
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    port: 465,
+    port: "465",
+    tls: true,
     address: "smtp.mandrillapp.com",
     user_name: ENV["MANDRILL_USERNAME"],
     password: ENV["MANDRILL_APIKEY"],
