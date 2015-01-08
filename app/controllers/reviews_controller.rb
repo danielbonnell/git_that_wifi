@@ -1,8 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   def index
-    # @reviews = Review.find_by(params[:site_id]).sort_by_total_score.page params[:page]
-
   end
 
   def new
