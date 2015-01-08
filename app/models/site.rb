@@ -15,7 +15,7 @@ class Site < ActiveRecord::Base
 
   def reviewed
     if save
-      ReviewAdded.receipt(self).deliver
+      ReviewAdded.receipt(self).deliver_now
       return true
     end
   end
