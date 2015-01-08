@@ -21,8 +21,10 @@ class Site < ActiveRecord::Base
   end
 
   def self.search(query)
-    where("plainto_tsquery(?) @@ " +
-    "to_tsvector('english', name || ' ' || description)",
-    query)
+    where(
+      "plainto_tsquery(?) @@ " +
+      "to_tsvector('english', name || ' ' || description)",
+      query
+    )
   end
 end

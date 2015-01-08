@@ -6,7 +6,6 @@ class SitesController < ApplicationController
     else
       @sites = Site.all
     end
-    
     @sites = @sites.order("name DESC").page params[:page]
   end
 

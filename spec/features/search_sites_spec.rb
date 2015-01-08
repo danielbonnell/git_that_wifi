@@ -12,6 +12,6 @@ feature "search movies" do
 
     expect(page).to have_link("Cafe Nero", href: site_path(cafe))
     expect(page).to have_link("Cafe Starbucks", href: site_path(cafe2))
-    expect(page).to_not have_content("Dunkin")
+    expect(page).to_not have_content(cafe3.name)
   end
 end
