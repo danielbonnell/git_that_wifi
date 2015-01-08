@@ -1,5 +1,4 @@
 class Vote < ActiveRecord::Base
-  after_save :total_score
   belongs_to :review
   belongs_to :user
 
