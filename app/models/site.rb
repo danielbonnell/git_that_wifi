@@ -12,12 +12,7 @@ class Site < ActiveRecord::Base
   validates :description, presence: true
   validates :user_id, presence: true
 
-  def review(user)
-    review.create!(comment: "Great coffee!", rating: 4, user_id: user.id)
-  end
-
   def reviewed
-    # binding.pry
     if save
       ReviewAdded.receipt(self).deliver
       return true
