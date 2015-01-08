@@ -59,7 +59,7 @@ feature "votes on review", %{
     click_button "Upvote"
 
     expect(page).to have_content test_review.score
-    expect(page).to have_content "Vote Changed"
+    expect(page).to have_content "Vote has been recorded"
   end
 
   scenario "User can only vote once per review" do
@@ -70,6 +70,6 @@ feature "votes on review", %{
     click_button "Upvote"
 
     expect(page).to have_content test_review.score
-    expect(page).to have_content "Vote Already Recorded"
+    expect(page).to have_content "Vote has been recorded"
   end
 end

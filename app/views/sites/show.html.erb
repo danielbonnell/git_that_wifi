@@ -46,12 +46,12 @@
           Rating: <%= review.rating %><br>
           Comment: <%= review.comment %>
             <div class="votes">
-              <%= form_for [review, @vote] do |f| %>
+              <%= form_for @vote, url: review_votes_path(review), method: "patch" do |f| %>
                 <%= f.hidden_field :choice, value: 1 %>
                 <%= f.submit "Upvote" %>
               <% end %>
 
-              <%= form_for [review, @vote] do |f| %>
+              <%= form_for @vote, url: review_votes_path(review), method: "patch" do |f| %>
                 <%= f.hidden_field :choice, value: -1 %>
                 <%= f.submit "Downvote" %>
               <% end %>
