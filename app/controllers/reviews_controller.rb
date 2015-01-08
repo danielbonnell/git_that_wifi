@@ -30,6 +30,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.site = @site
     @review.user = current_user
+    binding.pry
     if @review.save
       @review.site.reviewed
       redirect_to site_path(@review.site_id),
