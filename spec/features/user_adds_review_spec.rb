@@ -9,7 +9,7 @@ feature "user adds review", %{
   -[ ] I must give a rating and optionally a review comment
   -[ ] I must see those on the site page
   -[ ] I must be signed in to add a review
-  -[ ] The site creator must receive an email that says a new review has been posted
+  -[ ] The site maker must receive an email saying a new review has been posted
   } do
 
     let (:test_site) do

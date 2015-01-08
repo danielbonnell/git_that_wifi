@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 RSpec.describe ReviewAdded, :type => :model do
 
-  describe 'valid review' do
+  describe "valid review" do
     it 'posts a valid' do
       review = FactoryGirl.build(:review)
       review.should be_valid
@@ -15,7 +15,7 @@ RSpec.describe ReviewAdded, :type => :model do
     end
   end
 
-  describe 'invalid review' do
+  describe "invalid review" do
     it 'posts an invalid review' do
       review = FactoryGirl.build(:review, rating: nil)
       review.should_not be_valid

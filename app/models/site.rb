@@ -14,6 +14,7 @@ class Site < ActiveRecord::Base
   def review(user)
     self.review.create!(comment: "Great coffee!", rating: 4, user_id: user.id)
   end
+
   def reviewed
     # binding.pry
     if save
