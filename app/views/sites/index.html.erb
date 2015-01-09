@@ -15,21 +15,25 @@
     </tr>
   </thead>
   <tbody>
+    <% if @sites.present? %>
     <% @sites.each do |site| %>
-      <tr>
-        <td><%= link_to site.name, site_path(site) %></td>
-        <td>
-          <p>
-            <%= site.address %>
-            <br>
-            <%= site.city %>, <%= site.state %> <%= site.zip %>
-          </p>
-        </td>
-        <td><%= site.phone %></td>
-        <td><%= site.cost_rating %></td>
-        <td><%= site.url %></td>
-        <td><%= site.description %></td>
-      </tr>
+    <tr>
+      <td><%= link_to site.name, site_path(site) %></td>
+      <td>
+        <p>
+          <%= site.address %>
+          <br>
+          <%= site.city %>, <%= site.state %> <%= site.zip %>
+        </p>
+      </td>
+      <td><%= site.phone %></td>
+      <td><%= site.cost_rating %></td>
+      <td><%= site.url %></td>
+      <td><%= site.description %></td>
+    </tr>
+    <% end %>
+    <% else %>
+    <p>No results found</p>
     <% end %>
   </tbody>
 </table>
