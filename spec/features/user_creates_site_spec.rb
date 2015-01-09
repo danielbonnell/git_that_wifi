@@ -40,7 +40,6 @@ feature "user creates", %{
       expect(page).to have_content site.description
       expect(page).to have_content site.phone
       expect(page).to have_content site.url
-      expect(page).to have_content site.cost_rating
       expect(page).to have_content "Edit"
       expect(page).to have_content "Site created successfully"
 

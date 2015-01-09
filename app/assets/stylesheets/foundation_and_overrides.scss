@@ -47,6 +47,7 @@
 // 33. Tooltips
 // 34. Top Bar
 // 36. Visibility Classes
+// 37. Custom Classes
 
 // a. Base
 // - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1443,5 +1444,30 @@ $topbar-bg-color: #212D48;
 // $include-table-visibility-classes: true;
 // $include-legacy-visibility-classes: true;
 // $include-accessibility-classes: true;
+
+// 37. Custom Classes
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+#slider {
+  height: 400px;
+  width: 1000px;
+  background-color: #CCCCCC;
+  overflow: hidden;
+}
+
+#slider > img {
+  width: 1000px;
+  display: inline-block;
+  position: relative;
+}
+
+.rating > span:hover:before {
+  content: "\2605";
+  position: absolute;
+}
+
+.votes {
+  display: inline-block;
+}
 
 @import 'foundation';
