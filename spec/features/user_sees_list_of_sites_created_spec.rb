@@ -10,7 +10,7 @@ feature "user sees lists of sites created", %{
   } do
 
   let(:user) do
-      FactoryGirl.create(:user)
+    FactoryGirl.create(:user)
   end
 
   scenario "visit your account detail see list of sites created" do
