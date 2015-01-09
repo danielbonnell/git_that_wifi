@@ -27,7 +27,7 @@ class Site < ActiveRecord::Base
         "to_tsvector('english', LOWER(name) || ' ' || description)",
         query
       )
-      where(['LOWER(name) LIKE ?',"%" + query.downcase + "%"])
+      where(["LOWER(name) LIKE ?", "%" + query.downcase + "%"])
     else
       all
     end

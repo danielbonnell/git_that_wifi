@@ -4,7 +4,7 @@ class SitesController < ApplicationController
     if params[:query]
       @sites = Site.search(params[:query])
     else
-      @sites = Site.all 
+      @sites = Site.all
     end
     @sites = @sites.order("name DESC").page params[:page]
   end
