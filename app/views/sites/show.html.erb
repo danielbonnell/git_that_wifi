@@ -43,9 +43,10 @@
       <ul>
         <% @reviews.each do |review|  %>
           <li>
-          Rating: <%= review.rating %><br>
-          Comment: <%= review.comment %><br>
-          User:  <%= review.user.first_name %>
+            Rating:   <%= review.rating %><br>
+            Comment:  <%= review.comment %><br>
+            User:     <%= review.user.first_name %><br>
+                      <i><%= review.user.created_at %></i>
             <div class="votes">
               <%= form_for @vote, url: review_votes_path(review), method: "patch" do |f| %>
                 <%= f.hidden_field :choice, value: 1 %>
