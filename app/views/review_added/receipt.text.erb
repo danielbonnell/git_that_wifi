@@ -4,6 +4,6 @@ Review added to your site <%= @site.name %>
   Dear <%= @site.user.first_name %>,
   A review has been posted to your site, <%= @site.name %>.
 
-  You can view it <%= link_to "here", site_path(@site) %>.
+  You can view it <%= link_to "here", site_url(@site) %>.
 
   Thank you for your support, from all of us here at Git That Wifi.
