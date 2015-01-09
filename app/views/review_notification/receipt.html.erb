@@ -1,5 +1,10 @@
-<h1>ReviewNotification#receipt</h1>
-
+<h1>Review added to your site <%= @review.site.title %></h1>
+<br>
 <p>
-  <%= @greeting %>, find me in app/views/review_notification/receipt.html.erb
+  Dear <%= @review.site.user.first_name %>,<br>
+  <%= @review.user.first_name %> has posted a review to your site, <%= @review.site.title %>. <br>
+  <br>
+  You can view it <%= link_to "here", site_path(@review.site) %><br>
+  <br>
+  Thank you for your support, from all of us here at Git That Wifi.
 </p>
