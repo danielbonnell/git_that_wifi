@@ -1,6 +1,6 @@
 class ReviewNotification < ApplicationMailer
   def receipt(review)
-    @greeting = "Hi"
+    @review = review
 
     mail to: review.user.email, subject: "New Review Posted"
   end
