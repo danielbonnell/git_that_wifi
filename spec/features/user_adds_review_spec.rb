@@ -46,7 +46,6 @@ feature "user adds review", %{
       select "5", from: "Rating"
 
       click_on "Submit"
-
       expect(page).to have_content "Rating: 5"
       expect(page).to have_content "Review Saved Successfully"
       expect(Review.count).to eq(prev_count + 1)
@@ -55,6 +54,29 @@ feature "user adds review", %{
       last_email = ActionMailer::Base.deliveries.last
       expect(last_email).to have_subject("New Review Posted")
       expect(last_email).to deliver_to(test_site.user.email)
+    end
+    scenario "user tries to add multiple reviews to a site" do
+      user = FactoryGirl.create(:user)
+
+      visit new_user_session_path
+
+      fill_in "Email", with: user.email
+      fill_in "Password", with: user.password
+
+      click_button "Sign in"
+
+      visit site_path(test_site)
+
+      click_on "Add a Review"
+      select "5", from: "Rating"
+      click_on "Submit"
+
+      click_on "Add a Review"
+      select "5", from: "Rating"
+      click_on "Submit"
+
+      expect(page).to have_content "You have already reviewed this site!"
+
     end
 
     scenario "User tries to add comment as a Guest" do

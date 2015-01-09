@@ -27,17 +27,19 @@ class ReviewsController < ApplicationController
 
   def create
     @site = Site.find(params[:site_id])
-    @review = Review.new(review_params)
-    @review.site = @site
-    @review.user = current_user
-    if @review.save
-      @review.site.reviewed
-      redirect_to site_path(@review.site_id),
-      notice: "Review Saved Successfully"
-      # ReviewAdded.receipt(self).deliver
-      # return true
+    @review = Review.find_or_initialize_by(site: @site, user: current_user)
+    if @review.new_record?
+      @review.attributes = review_params
+      if @review.save
+        @review.site.reviewed
+        redirect_to site_path(@review.site_id),
+          notice: "Review Saved Successfully"
+      else
+        render "new"
+      end
     else
-      render "new"
+      redirect_to site_path(@review.site),
+        notice: "You have already reviewed this site!"
     end
   end
 
