@@ -4,15 +4,17 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="large-12 columns">
-    <div id="slider">
-      <%= image_tag @site.image, alt: @site.name %>
-    </div>
+<% unless @site.image == nil %>
+  <div class="row">
+    <div class="large-12 columns">
+      <div id="slider">
+        <%= image_tag @site.image, alt: @site.name %>
+      </div>
 
-    <hr/>
+      <hr/>
+    </div>
   </div>
-</div>
+<% end %>
 
 <div class="row">
   <div class="large-4 columns">
