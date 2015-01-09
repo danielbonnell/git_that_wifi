@@ -33,13 +33,13 @@ class ReviewsController < ApplicationController
       if @review.save
         @review.site.reviewed
         redirect_to site_path(@review.site_id),
-        notice: "Review Saved Successfully"
+          notice: "Review Saved Successfully"
       else
         render "new"
       end
     else
       redirect_to site_path(@review.site),
-      notice: "You have already reviewed this site!"
+        notice: "You have already reviewed this site!"
     end
   end
 
