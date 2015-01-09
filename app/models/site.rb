@@ -1,4 +1,5 @@
 class Site < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
   paginates_per 10
   belongs_to :user
   has_many :reviews, dependent: :destroy
