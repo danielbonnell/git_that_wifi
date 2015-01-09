@@ -5,8 +5,7 @@
         <li class="title">My Account</li>
         <li class="price"><%= @user.first_name %> <%= @user.last_name %></li>
         <li class="bullet-item"><%= @user.email %></li>
-        <li class="bullet-item"><%= avatar(300) %></li>
-       <li class="bullet-item"><%= image_tag(@user.avatar.url, alt: @user.avatar.url) %></li>
+        <li class="bullet-item"><%= user_avatar(300) %></li>
         <li class="bullet-item">
           <strong><%= @user.first_name.capitalize %>'s sites:</strong>
         </li>

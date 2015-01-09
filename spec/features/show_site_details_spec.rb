@@ -57,9 +57,9 @@ feature "sees the details of a site", %{
     expect(page).to have_content test_site.url
   end
 
-  scenario "sees cost rating" do
-    visit site_path(test_site)
-
-    expect(page).to have_content test_site.cost_rating
-  end
+  # scenario "sees cost rating" do
+  #   visit site_path(test_site)
+  #
+  #   expect(page).to have_content test_site.cost_rating
+  # end
 end
