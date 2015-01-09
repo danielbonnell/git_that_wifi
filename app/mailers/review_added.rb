@@ -1,7 +1,7 @@
 class ReviewAdded < ApplicationMailer
-  def receipt(review)
-    @greeting = "Hi"
+  def receipt(site)
+    @site = site
 
-    mail to: review.user.email, subject: "New Review Posted"
+    mail to: site.user.email, subject: "New Review Posted"
   end
 end

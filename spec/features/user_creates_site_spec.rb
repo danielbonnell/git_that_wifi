@@ -21,6 +21,9 @@ feature "user creates", %{
       visit new_site_path
       expect(page).to have_content "Create a new site"
 
+      attach_file("site[image]", File.join(
+      Rails.root, "spec/data/cheezburger_410_6.jpg")
+      )
       fill_in "Name", with: site.name
       fill_in "Address", with: site.address
       fill_in "City", with: site.city

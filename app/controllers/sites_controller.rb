@@ -69,7 +69,8 @@ class SitesController < ApplicationController
       :cost_rating,
       :user_id,
       :page,
-      :query
+      :query,
+      :image
     )
   end
 end

@@ -1,4 +1,5 @@
 class Site < ActiveRecord::Base
+  mount_uploader :image, ImageUploader
   paginates_per 10
   belongs_to :user
   has_many :reviews, dependent: :destroy
@@ -21,10 +22,15 @@ class Site < ActiveRecord::Base
   end
 
   def self.search(query)
-    where(
-      "plainto_tsquery(?) @@ " +
-      "to_tsvector('english', name || ' ' || description)",
-      query
-    )
+    if query
+      where(
+        "plainto_tsquery(?) @@ " +
+        "to_tsvector('english', LOWER(name) || ' ' || description)",
+        query
+      )
+      where(["LOWER(name) LIKE ?", "%" + query.downcase + "%"])
+    else
+      all
+    end
   end
 end

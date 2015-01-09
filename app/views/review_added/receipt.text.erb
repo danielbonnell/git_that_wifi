@@ -1,3 +1,9 @@
-ReviewAdded#receipt
+Review added to your site <%= @site.name %>
 
-<%= @greeting %>, find me in app/views/review_added/receipt.text.erb
+
+  Dear <%= @site.user.first_name %>,
+  A review has been posted to your site, <%= @site.name %>.
+
+  You can view it <%= link_to "here", site_url(@site) %>.
+
+  Thank you for your support, from all of us here at Git That Wifi.
