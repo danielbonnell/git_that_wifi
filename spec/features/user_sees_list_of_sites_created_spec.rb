@@ -9,18 +9,18 @@ feature "user sees lists of sites created", %{
   -[ ] If i have not created any sites, I should see a link to create a site
   } do
 
-    let(:user) do
+  let(:user) do
       FactoryGirl.create(:user)
-    end
+  end
 
-    scenario "visit your account detail see list of sites created" do
-      site1 = FactoryGirl.create(:site, name: "Site one", user: user)
-      site2 = FactoryGirl.create(:site, name: "Site two", user: user)
-      sign_in_as(user)
-      visit user_path(user)
+  scenario "visit your account detail see list of sites created" do
+    site1 = FactoryGirl.create(:site, name: "Site one", user: user)
+    site2 = FactoryGirl.create(:site, name: "Site two", user: user)
+    sign_in_as(user)
+    visit user_path(user)
 
-      expect(page).to have_content site1.name
-      expect(page).to have_content site2.name
+    expect(page).to have_content site1.name
+    expect(page).to have_content site2.name
 
-    end
+  end
 end
