@@ -8,7 +8,7 @@ feature "search movies" do
 
     visit sites_path
     fill_in "query", with: "Cafe"
-    click_button "Search Sites"
+    click_button "Search"
 
     expect(page).to have_link("Cafe Nero", href: site_path(cafe))
     expect(page).to have_link("Cafe Starbucks", href: site_path(cafe2))
