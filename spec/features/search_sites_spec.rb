@@ -14,4 +14,13 @@ feature "search movies" do
     expect(page).to have_link("Cafe Starbucks", href: site_path(cafe2))
     expect(page).to_not have_content("Dunkin")
   end
+
+  scenario "fill in blank search" do
+    visit sites_path
+    fill_in "query", with: "candles"
+    click_button "Search Sites"
+
+    expect(page).to have_content("No results found")
+  end
+
 end
