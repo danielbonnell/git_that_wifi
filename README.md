@@ -5,11 +5,11 @@ Git that WiFi
 [![Coverage Status](https://coveralls.io/repos/danielbonnell/git_that_wifi/badge.png)](https://coveralls.io/r/danielbonnell/git_that_wifi)
 
 ## Contributors
-* Daniel Bonnell
-* Chan Park
-* Nick Clucas
-* Jenny Brown
-* Kiran Sridhar
+* [Daniel Bonnell](http://www.github.com/danielbonnell)
+* [Chan Park](http://www.github.com/chanhpark)
+* [Nick Clucas](http://www.github.com/nickcluc)
+* [Jenny Brown](http://www.github.com/jennyzbrown)
+* [Kiran Sridhar](http://www.github.com/kiransridhar)
 
 ## About the Project
 [Git that WiFi](http://stark-peak-6172.herokuapp.com/) is a group project that we completed for Launch Academy. The goal of the project was to build a fully functional review site similar to Yelp. Git that WiFi is a review site for public working spaces, such as coffee shops and libraries.
