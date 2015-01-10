@@ -46,8 +46,8 @@ feature "user adds review", %{
       select "5", from: "Rating"
 
       click_on "Submit"
-      expect(page).to have_content "Rating: 5"
-      expect(page).to have_content "User:  Chan"
+
+      expect(page).to have_content "Rating: ☆ ☆ ☆ ☆ ☆"
       expect(page).to have_content "Review Saved Successfully"
       expect(Review.count).to eq(prev_count + 1)
 

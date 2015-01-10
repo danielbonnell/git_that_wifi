@@ -1,87 +1,140 @@
-<h1>Site Details</h1>
+<div class="row">
+  <div class="large-3 large-offset-4 columns">
+    <h1><%= @site.name %></h1>
+  </div>
+</div>
+
+<% unless @site.image == nil %>
+  <div class="row">
+    <div class="large-12 columns">
+      <div id="slider">
+        <%= image_tag @site.image, alt: @site.name %>
+      </div>
+
+      <hr/>
+    </div>
+  </div>
+<% end %>
 
 <div class="row">
-  <div class="large-10 columns">
-    <table class="sites">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Zip</th>
-          <th>Phone</th>
-          <th>Cost Rating</th>
-          <th>Url</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= image_tag(@site.image) %></td>
-          <td><%= @site.name %></td>
-          <td>
-            <p>
-              <%= @site.address %>
-              <br>
-              <%= @site.city %>, <%= @site.state %> <%= @site.zip %>
-            </p>
-          </td>
-          <td><%= @site.phone %></td>
-          <td><%= @site.cost_rating %></td>
-          <td><%= @site.url %></td>
-          <td><%= @site.description %></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="large-4 columns">
+    <h3>Where we're located:</h3>
+    <iframe
+    width="303"
+    height="227"
+    frameborder="0" style="border:0"
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBpNCywq-uxWjQnJICVNxv47n-HJA3AiYI
+    &q=<%= @site.name.split(' ').join('+') %>+<%= @site.city %>+<%= @site.state %>
+    &attribution_source=Google+Maps+Embed+API
+    &attribution_web_url=<%= @site.url %>
+    &attribution_ios_deep_link_id=comgooglemaps://?daddr=<%= @site.name.split(' ').join('+') %>+<%= @site.city %>+<%= @site.state %>">
+  </iframe>
+  </div>
+
+  <div class="large-4 columns">
+    <h3>Details</h3>
+    <h5>Average Rating</h5>
+    <div class="rating">
+      <% @site.cost_rating.times do %>
+        <span>☆</span>
+      <% end %>
+    </div>
+    <h5>Description</h5>
+    <p><%= @site.description %></p>
+  </div>
+
+  <div class="large-4 columns">
+    <h3>Contact Us!</h3>
+    <h5>Name</h5>
+    <p><%= @site.name %></p>
+    <h5>Address</h5>
+    <p><%= @site.address %>
+      <br>
+      <%= @site.city %>, <%= @site.state %> <%= @site.zip %>
+    </p>
+    <h5>Phone</h5>
+    <p><%= @site.phone %></p>
+    <h5>Website</h5>
+    <p><a href="<%= @site.url %>"><%= @site.url %></a></p>
   </div>
 </div>
-  <br>
 
-<div class ="row">
-  <div class="reviews">
-    <% unless @reviews.empty? %>
-      <ul>
-        <% @reviews.each do |review|  %>
+<div class="row">
+  <div class="large-12 columns">
+    <div class="panel">
+      <h3>User Reviews</h3>
+      <div class="reviews">
+        <% unless @reviews.empty? %>
+        <ul>
+          <% @reviews.each do |review|  %>
           <li>
-          Rating: <%= review.rating %><br>
-          Comment: <%= review.comment %>
-            <div class="votes">
-              <%= form_for @vote, url: review_votes_path(review), method: "patch" do |f| %>
-                <%= f.hidden_field :choice, value: 1 %>
-                <%= f.submit "Upvote" %>
+            <h5>
+              Rating:
+              <% review.rating.times do %>
+                <span>☆</span>
               <% end %>
-
-              <%= form_for @vote, url: review_votes_path(review), method: "patch" do |f| %>
-                <%= f.hidden_field :choice, value: -1 %>
-                <%= f.submit "Downvote" %>
-              <% end %>
-            </div>
-            Score: <%= review.score %>
-            <div>
-              <% unless current_user == nil %>
-                <% if review.user_id == current_user.id || (!current_user.nil? && current_user.role == 2) %>
-                  <%= link_to "Edit Review", edit_site_review_path(@site, review) %>
-                  <%= link_to "Delete", site_review_path(@site, review), method: :delete, data: { confirm: "Are you sure?" } %>
+            </h5>
+            <h6><%= review.score %> user(s) found this review helpful.</h6>
+            <h5>Review Details</h5>
+            <p><%= review.comment %></p>
+            <p>
+              By: <%= review.user.first_name %> <%= time_ago_in_words(review.created_at) %> ago
+            </p>
+            <ul>
+              <li class="votes">
+                <%= form_for @vote, url: review_votes_path(review), method: "patch" do |f| %>
+                  <%= f.hidden_field :choice, value: 1 %>
+                  <%= f.submit "Upvote", { class: "success button tiny radius" }  %>
                 <% end %>
-              <% end %>
-            </div>
+              </li>
+              <li class="votes">
+                <%= form_for @vote, url: review_votes_path(review), method: "patch" do |f| %>
+                  <%= f.hidden_field :choice, value: -1 %>
+                  <%= f.submit "Downvote", { class: "alert button tiny radius" } %>
+                <% end %>
+              </li>
+              <li class="votes">
+                <% unless current_user == nil %>
+                <% if review.user_id == current_user.id || (!current_user.nil? && current_user.role == 2) %>
+                  <%= link_to "Edit Review", edit_site_review_path(@site, review), class: "button tiny radius" %>
+                  <%= link_to "Delete", site_review_path(@site, review), method: :delete, data: { confirm: "Are you sure?" }, class: "alert button tiny radius" %>
+                <% end %>
+                <% end %>
+              </li>
+            </ul>
           </li>
+          <% end %>
+        </ul>
         <% end %>
-      </ul>
-    <% end %>
+      </div>
+      <%= paginate @reviews %>
+
+      <h3>User Controls</h3>
+      <div class="row">
+        <div class="large-9 columns">
+          <div class="review">
+            <%= link_to "Add a Review", new_site_review_path(@site), class: "button tiny radius" %>
+          </div>
+        </div>
+        <div class="large-3 columns">
+          <% if (current_user != nil && current_user.id == @site.user_id) || (!current_user.nil? && current_user.role == 2) %>
+          <%= link_to "Edit", edit_site_path(@site), class: "success button tiny radius" %>
+          <%= link_to "Delete Site", site_path(@site), method: :delete, data: { confirm: "Are you sure?" }, class: "alert button tiny radius" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <%= paginate @reviews %>
 </div>
 
-  <div class="review">
-    <%= link_to "Add a Review", new_site_review_path(@site) %>
+<footer class="row">
+  <div class="large-12 columns">
+    <hr/>
+    <div class="row">
+      <div class="large-6 columns">
+        <p>© Copyright Git that WiFi! All rights reserved.</p>
+      </div>
+    </div>
   </div>
-
-
-
-<% if (current_user != nil && current_user.id == @site.user_id) || (!current_user.nil? && current_user.role == 2) %>
-    <%= link_to "Edit", edit_site_path(@site) %>
-    <%= link_to "Delete Site", site_path(@site), method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
+</footer>
