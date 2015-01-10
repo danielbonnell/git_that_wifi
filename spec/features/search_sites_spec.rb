@@ -18,7 +18,7 @@ feature "search movies" do
   scenario "fill in blank search" do
     visit sites_path
     fill_in "query", with: "candles"
-    click_button "Search Sites"
+    click_button "Search"
 
     expect(page).to have_content("No results found")
   end

@@ -29,7 +29,7 @@ feature "user edits profile picture", %{
     visit user_path(user)
 
     expect(page).to have_selector(
-      "img[alt=\"#{user.first_name} #{user.last_name}'s Avatar\"]"
+      "img[alt=\"#{user.first_name}'s Avatar\"]"
     )
   end
 
