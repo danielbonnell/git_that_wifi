@@ -17,10 +17,10 @@ Git that WiFi
 
 ## Learning Outcomes
 The primary purpose of the group project was to learn how to effectively work as a team. Below is a brief list of learning outcomes from the project.
-* We learned how to use git workflow to allow pairs and individuals simultaneously work on different parts of the app while minimizing any duplication of work.
+* We learned how to use git workflow to allow pairs and individuals to simultaneously work on different parts of the app while minimizing duplication of work.
 * We learned to use project management software (Trello / Pivotal Tracker) to assign components of the project to different team members and track progress through the planning, development, commit, code review, and merged stages of development.
-* We practiced pair programming, making sure that we regularly switched partners and alternated between the driver/observer roles.
-* We strictly adhered to the TDD best practices.
+* We practiced pair programming, making sure to regularly switch partners and alternate between the driver and observer roles.
+* We strictly adhered to test driven development (TDD) best practices.
 * We ensured that all core functionality was implemented before devoting time for non-core features.
 
 ## Core Features
